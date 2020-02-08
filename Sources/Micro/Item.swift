@@ -10,11 +10,15 @@ import UIKit
 public struct Item<Cell: UICollectionViewCell> {
     public let observer = Observer()
 
-    public init(configure: @escaping (Cell) -> Void) {
+    public init(_ closure: @escaping (Cell) -> Void) {
         observer.onConfigure = { context, dataSource in
             dataSource.registerIfNeeded(collectionView: context.collectionView, cellType: Cell.self)
-            let cell: Cell? = context.collectionView.dequeue(for: context.indexPath)
-            return cell
+            if let cell: Cell = context.collectionView.dequeue(for: context.indexPath) {
+                closure(cell)
+                return cell
+            } else {
+                return nil
+            }
         }
     }
 
