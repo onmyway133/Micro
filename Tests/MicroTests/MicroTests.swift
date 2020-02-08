@@ -20,7 +20,7 @@ final class MicroTests: XCTestCase {
 
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        let dataSource = DataSource()
+        let dataSource = DataSource(collectionView: collectionView)
         collectionView.dataSource = dataSource
         collectionView.delegate = dataSource
 

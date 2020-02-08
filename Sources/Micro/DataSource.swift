@@ -10,12 +10,17 @@ import UIKit
 open class DataSource: NSObject {
     private var cellRegister: Set<String> = Set()
     public var state: State = .init()
+    public weak var collectionView: UICollectionView?
+
+    public init(collectionView: UICollectionView) {
+        self.collectionView = collectionView
+    }
 
     public func reload(
-        collectionView: UICollectionView,
         newState: State,
         completion: @escaping Reloader.Completion
     ) {
+        guard let collectionView = collectionView else { return }
         newState.reloader.onReload(self, collectionView, state, newState, completion)
     }
 
