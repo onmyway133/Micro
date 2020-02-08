@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "Micro",
+    platforms: [
+        .iOS(.v10),
+    ],
     products: [
         .library(
             name: "Micro",

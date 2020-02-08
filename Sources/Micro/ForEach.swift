@@ -9,23 +9,24 @@ import UIKit
 import DeepDiff
 
 public func forEach<Model: DiffAware, Cell: UICollectionViewCell>(
-    models: [Model], transform: (Model) -> Item<Cell>
+    models: [Model],
+    transform: (Model) -> Item<Cell>
 ) -> State {
-    let onReload: (DataSource, UICollectionView, State, State) -> Void = { dataSource, collectionView, oldState, newState in
-        let oldModels = oldState.models.compactMap({ $0 as? Model })
-        let changes = diff(old: oldModels, new: models)
+    let onReload: Reloader.Reload = { dataSource, collectionView, oldState, newState, completion in
+        let oldModels: [Model] = oldState.models.compactMap({ $0 as? Model })
+        let changes: [Change<Model>] = diff(old: oldModels, new: models)
         collectionView.reload(
             changes: changes,
             section: 0,
             updateData: {
-//                dataSource.finalState = newState
+                dataSource.state = newState
             },
-            completion: nil
+            completion: completion
         )
     }
 
-    let items = models.map(transform)
-    let observers = items.map({ $0.observer })
+    let items: [Item<Cell>] = models.map(transform)
+    let observers: [Observer] = items.map({ $0.observer })
 
     return State(
         models: models,

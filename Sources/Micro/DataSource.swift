@@ -9,21 +9,20 @@ import UIKit
 
 open class DataSource: NSObject {
     private var cellRegister: Set<String> = Set()
-    private var finalState: State!
-    private var oldState: State!
-    private let queue = DispatchQueue(label: "")
+    public var state: State = .init()
 
-    var state: State = .init() {
-        didSet {
-            reload(oldState: oldValue, newState: state, completion: {})
-        }
+    public func reload(
+        collectionView: UICollectionView,
+        newState: State,
+        completion: @escaping Reloader.Completion
+    ) {
+        newState.reloader.onReload(self, collectionView, state, newState, completion)
     }
 
-    open func reload(oldState: State, newState: State, completion: () -> Void) {
-//        newState.reloader.onReload(self, collectionView, oldState, newState)
-    }
-
-    public func registerIfNeeded<Cell: UICollectionViewCell>(collectionView: UICollectionView, cellType: Cell.Type) {
+    public func registerIfNeeded<Cell: UICollectionViewCell>(
+        collectionView: UICollectionView,
+        cellType: Cell.Type
+    ) {
         if !cellRegister.contains(String(describing: cellIdentifier(cellType))) {
             collectionView.register(cellType: cellType)
             cellRegister.insert( cellIdentifier(cellType))

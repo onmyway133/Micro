@@ -8,8 +8,10 @@
 import UIKit
 import DeepDiff
 
-struct Reloader {
-    var onReload: (DataSource, UICollectionView, State, State) -> Void = { _, _, _, _ in }
+public struct Reloader {
+    public typealias Completion = (Bool) -> Void
+    public typealias Reload = (DataSource, UICollectionView, State, State, @escaping Completion) -> Void
+    public let onReload: Reload
 }
 
 public struct State {
@@ -24,6 +26,6 @@ extension State {
         self.models = []
         self.items = []
         self.observers = []
-        self.reloader = Reloader()
+        self.reloader = Reloader(onReload: { _, _, _, _, _ in })
     }
 }
