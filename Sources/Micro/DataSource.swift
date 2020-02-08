@@ -18,10 +18,16 @@ open class DataSource: NSObject {
 
     public func reload(
         newState: State,
-        completion: @escaping Reloader.Completion
+        completion: Reloader.Completion? = nil
     ) {
         guard let collectionView = collectionView else { return }
-        newState.reloader.onReload(self, collectionView, state, newState, completion)
+        newState.reloader.onReload(
+            self,
+            collectionView,
+            state,
+            newState,
+            completion ?? { _ in }
+        )
     }
 
     public func registerIfNeeded<Cell: UICollectionViewCell>(
