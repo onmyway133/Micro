@@ -1,5 +1,12 @@
 ## Micro
 
+<div align="center">
+<img src="Screenshots/demo.gif" height=400>
+</div>
+
+For demo, check [DemoMicro](https://github.com/onmyway133/Micro/Example/DemoMicro)
+
+
 ## Description
 
 Most of the time, we want to apply model data to cell with smart diffing.
@@ -121,7 +128,7 @@ dataSource.state = forEach(movies) { movie in
 **Micro** is also available through [Swift Package Manager](https://swift.org/package-manager/)
 
 ```swift
-.package(url: "https://github.com/onmyway133/Micro", from: "1.0.0")
+.package(url: "https://github.com/onmyway133/Micro", from: "1.1.0")
 ```
 
 ## Author
