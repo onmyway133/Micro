@@ -9,7 +9,7 @@ import UIKit
 
 open class DataSource: NSObject {
     private var cellRegister: Set<String> = Set()
-    private var finalState: State = .init()
+    internal var trueState: State = .init()
     public weak var collectionView: UICollectionView?
 
     public init(collectionView: UICollectionView) {
@@ -18,7 +18,7 @@ open class DataSource: NSObject {
 
     public var state: State {
         get {
-            finalState
+            trueState
         }
         set {
             reload(newState: newValue)
@@ -34,7 +34,6 @@ open class DataSource: NSObject {
         let request = Reloader.Request(
             dataSource: self,
             collectionView: collectionView,
-            oldState: finalState,
             newState: newState,
             isAnimated: isAnimated,
             completion: completion ?? { _ in }

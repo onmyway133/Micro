@@ -30,7 +30,7 @@ final class MicroTests: XCTestCase {
         ]
 
         dataSource.state = forEach(models: persons) { person in
-            Item<PersonCell>() { cell in
+            Item<PersonCell>() { context, cell in
                 cell.nameLabel.text = person.name
             }
             .onSelect { _ in

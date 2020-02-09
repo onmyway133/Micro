@@ -14,10 +14,10 @@ public func forEach<Model: DiffAware>(
 ) -> State {
     let onReload: Reloader.Reload = { request in
         let reload: () -> Void = {
-            let oldModels: [Model] = request.oldState.models.compactMap({ $0 as? Model })
+            let oldModels: [Model] = request.dataSource.trueState.models.compactMap({ $0 as? Model })
 
             if oldModels.isEmpty {
-                request.dataSource.finalState = request.newState
+                request.dataSource.trueState = request.newState
                 request.collectionView.reloadData()
                 request.completion(true)
                 return
@@ -28,7 +28,7 @@ public func forEach<Model: DiffAware>(
                 changes: changes,
                 section: 0,
                 updateData: {
-                    request.dataSource.finalState = request.newState
+                    request.dataSource.trueState = request.newState
                 },
                 completion: request.completion
             )

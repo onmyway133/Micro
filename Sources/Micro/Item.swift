@@ -14,11 +14,11 @@ public protocol ObserverOwner {
 public struct Item<Cell: UICollectionViewCell>: ObserverOwner {
     public let observer = Observer()
 
-    public init(_ closure: @escaping (Cell) -> Void) {
+    public init(_ closure: @escaping (Context, Cell) -> Void) {
         observer.onConfigure = { context, dataSource in
             dataSource.registerIfNeeded(collectionView: context.collectionView, cellType: Cell.self)
             if let cell: Cell = context.collectionView.dequeue(for: context.indexPath) {
-                closure(cell)
+                closure(context, cell)
                 return cell
             } else {
                 return nil

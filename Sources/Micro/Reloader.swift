@@ -11,7 +11,6 @@ public struct Reloader {
     public struct Request {
         public let dataSource: DataSource
         public let collectionView: UICollectionView
-        public let oldState: State
         public let newState: State
         public let isAnimated: Bool
         public let completion: Completion
