@@ -30,7 +30,7 @@ open class DataSource: NSObject {
             isAnimated: isAnimated,
             completion: completion ?? { _ in }
         )
-        newState.reloader?.onReload(request)
+        newState.reloader.onReload(request)
     }
 
     public func registerIfNeeded<Cell: UICollectionViewCell>(

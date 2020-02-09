@@ -12,7 +12,7 @@ public struct State {
     let models: [Any]
     let items: [Any]
     let observers: [Observer]
-    var reloader: Reloader?
+    let reloader: Reloader
 }
 
 extension State {
@@ -20,6 +20,6 @@ extension State {
         self.models = []
         self.items = []
         self.observers = []
-        self.reloader = nil
+        self.reloader = Reloader(onReload: { _ in })
     }
 }
