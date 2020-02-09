@@ -32,6 +32,7 @@ dataSource.state = forEach(blogs) { blog in
 
 Features
 
+- Supports iOS 10+
 - Declare in type safe manner with `forEach`
 - `context` provides additional information, like `UICollectionView` and `IndexPath`
 - Automatic reload with smart diffing whenever `state` is set
