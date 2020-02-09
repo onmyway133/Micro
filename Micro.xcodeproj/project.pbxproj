@@ -26,6 +26,7 @@
 		D29CB48023EF6BC90067685A /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB47F23EF6BC90067685A /* State.swift */; };
 		D29CB48223EF6C020067685A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB48123EF6C020067685A /* Extensions.swift */; };
 		D29CB48423EF70BE0067685A /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB48323EF70BE0067685A /* ForEach.swift */; };
+		D29CB48623EFD9D60067685A /* Reloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB48523EFD9D60067685A /* Reloader.swift */; };
 		OBJ_40 /* Heckel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Heckel.swift */; };
 		OBJ_41 /* WagnerFischer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* WagnerFischer.swift */; };
 		OBJ_42 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Array+Extensions.swift */; };
@@ -82,6 +83,7 @@
 		D29CB47F23EF6BC90067685A /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		D29CB48123EF6C020067685A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D29CB48323EF70BE0067685A /* ForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
+		D29CB48523EFD9D60067685A /* Reloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reloader.swift; sourceTree = "<group>"; };
 		"DeepDiff::DeepDiff::Product" /* DeepDiff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DeepDiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Micro::Micro::Product" /* Micro.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Micro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Micro::MicroTests::Product" /* MicroTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = MicroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +240,7 @@
 				D29CB47F23EF6BC90067685A /* State.swift */,
 				D29CB48123EF6C020067685A /* Extensions.swift */,
 				D29CB48323EF70BE0067685A /* ForEach.swift */,
+				D29CB48523EFD9D60067685A /* Reloader.swift */,
 			);
 			name = Micro;
 			path = Sources/Micro;
@@ -387,6 +390,7 @@
 			buildActionMask = 0;
 			files = (
 				D29CB48423EF70BE0067685A /* ForEach.swift in Sources */,
+				D29CB48623EFD9D60067685A /* Reloader.swift in Sources */,
 				D29CB47C23EF6BA20067685A /* DataSource.swift in Sources */,
 				D29CB48223EF6C020067685A /* Extensions.swift in Sources */,
 				D29CB47A23EF6B960067685A /* Item.swift in Sources */,

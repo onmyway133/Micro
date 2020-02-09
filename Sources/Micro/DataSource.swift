@@ -18,16 +18,19 @@ open class DataSource: NSObject {
 
     public func reload(
         newState: State,
+        isAnimated: Bool = true,
         completion: Reloader.Completion? = nil
     ) {
         guard let collectionView = collectionView else { return }
-        newState.reloader.onReload(
-            self,
-            collectionView,
-            state,
-            newState,
-            completion ?? { _ in }
+        let request = Reloader.Request(
+            dataSource: self,
+            collectionView: collectionView,
+            oldState: state,
+            newState: newState,
+            isAnimated: isAnimated,
+            completion: completion ?? { _ in }
         )
+        newState.reloader?.onReload(request)
     }
 
     public func registerIfNeeded<Cell: UICollectionViewCell>(
@@ -115,6 +118,8 @@ extension DataSource: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return .zero
+        let observer = state.observers[indexPath.item]
+        let context = Context(collectionView: collectionView, indexPath: indexPath)
+        return observer.onSize(context)
     }
 }
