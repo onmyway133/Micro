@@ -9,7 +9,7 @@ import UIKit
 
 open class DataSource: NSObject {
     private var cellRegister: Set<String> = Set()
-    public var finalState: State = .init()
+    private var finalState: State = .init()
     public weak var collectionView: UICollectionView?
 
     public init(collectionView: UICollectionView) {

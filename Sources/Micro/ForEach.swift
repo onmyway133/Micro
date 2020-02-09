@@ -8,16 +8,16 @@
 import UIKit
 import DeepDiff
 
-public func forEach<Model: DiffAware, Cell: UICollectionViewCell>(
+public func forEach<Model: DiffAware>(
     models: [Model],
-    transform: (Model) -> Item<Cell>
+    transform: (Model) -> ObserverOwner
 ) -> State {
     let onReload: Reloader.Reload = { request in
         let reload: () -> Void = {
             let oldModels: [Model] = request.oldState.models.compactMap({ $0 as? Model })
 
             if oldModels.isEmpty {
-                request.dataSource.state = request.newState
+                request.dataSource.finalState = request.newState
                 request.collectionView.reloadData()
                 request.completion(true)
                 return
@@ -43,12 +43,12 @@ public func forEach<Model: DiffAware, Cell: UICollectionViewCell>(
         }
     }
 
-    let items: [Item<Cell>] = models.map(transform)
-    let observers: [Observer] = items.map({ $0.observer })
+    let owners: [ObserverOwner] = models.map(transform)
+    let observers: [Observer] = owners.map({ $0.observer })
 
     return State(
         models: models,
-        items: items,
+        owners: owners,
         observers: observers,
         reloader: Reloader(onReload: onReload)
     )

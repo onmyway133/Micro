@@ -10,7 +10,7 @@ import DeepDiff
 
 public struct State {
     let models: [Any]
-    let items: [Any]
+    let owners: [ObserverOwner]
     let observers: [Observer]
     let reloader: Reloader
 }
@@ -18,7 +18,7 @@ public struct State {
 extension State {
     public init() {
         self.models = []
-        self.items = []
+        self.owners = []
         self.observers = []
         self.reloader = Reloader(onReload: { _ in })
     }

@@ -7,7 +7,11 @@
 
 import UIKit
 
-public struct Item<Cell: UICollectionViewCell> {
+public protocol ObserverOwner {
+    var observer: Observer { get }
+}
+
+public struct Item<Cell: UICollectionViewCell>: ObserverOwner {
     public let observer = Observer()
 
     public init(_ closure: @escaping (Cell) -> Void) {
