@@ -11,6 +11,15 @@ dataSource.state = forEach(models: blogs) { blog in
     Item<BlogCell>() { context, cell in
         cell.nameLabel.text = blog.name
     }
+    .onSelect { context in 
+        print("cell at index \(context.indexPath.item) is selected")
+    }
+    .onSize { context in 
+        CGSize(
+            width: context.collectionView.frame.size.width, 
+            height: 40
+        )
+    }
 }
 ```
 
