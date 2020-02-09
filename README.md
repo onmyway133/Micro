@@ -6,6 +6,10 @@
 
 For demo, check [DemoMicro](https://github.com/onmyway133/Micro/tree/master/Example/DemoMicro)
 
+Read more
+
+- [How to build SwiftUI style UICollectionView data source in Swift](https://onmyway133.github.io/blog/How-to-build-SwiftUI-style-UICollectionView-data-source-in-Swift/)
+- [A better way to update UICollectionView data in Swift with diff framework](https://medium.com/flawless-app-stories/a-better-way-to-update-uicollectionview-data-in-swift-with-diff-framework-924db158db86)
 
 ## Description
 
