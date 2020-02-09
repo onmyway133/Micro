@@ -44,7 +44,7 @@ final class MicroTests: XCTestCase {
         dataSource.state = forEach(models: movies) { movie in
             switch movie.kind {
             case .show(let name):
-                return Item<MovieCell>() { context, cell in
+                return Cell<MovieCell>() { context, cell in
                     cell.nameLabel.text = name
                 }
                 .onSelect { _ in
@@ -63,9 +63,9 @@ final class MicroTests: XCTestCase {
                     CGSize(width: context.collectionView.frame.size.width, height: 40)
                 }
             case .loading:
-                return Item<LoadingCell>() { _, _ in }
+                return Cell<LoadingCell>() { _, _ in }
             case .ad:
-                return Item<AdCell>() { _, _ in }
+                return Cell<AdCell>() { _, _ in }
             }
         }
     }

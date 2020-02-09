@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		D29CB47A23EF6B960067685A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB47723EF6B920067685A /* Item.swift */; };
+		D29CB47A23EF6B960067685A /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB47723EF6B920067685A /* Cell.swift */; };
 		D29CB47C23EF6BA20067685A /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB47B23EF6BA20067685A /* DataSource.swift */; };
 		D29CB48023EF6BC90067685A /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB47F23EF6BC90067685A /* State.swift */; };
 		D29CB48223EF6C020067685A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29CB48123EF6C020067685A /* Extensions.swift */; };
@@ -78,7 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D29CB47723EF6B920067685A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		D29CB47723EF6B920067685A /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		D29CB47B23EF6BA20067685A /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		D29CB47F23EF6BC90067685A /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		D29CB48123EF6C020067685A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -221,7 +221,6 @@
 				OBJ_30 /* Products */,
 				OBJ_34 /* DerivedData */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -235,7 +234,7 @@
 		OBJ_8 /* Micro */ = {
 			isa = PBXGroup;
 			children = (
-				D29CB47723EF6B920067685A /* Item.swift */,
+				D29CB47723EF6B920067685A /* Cell.swift */,
 				D29CB47B23EF6BA20067685A /* DataSource.swift */,
 				D29CB47F23EF6BC90067685A /* State.swift */,
 				D29CB48123EF6C020067685A /* Extensions.swift */,
@@ -344,7 +343,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_30 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -393,7 +392,7 @@
 				D29CB48623EFD9D60067685A /* Reloader.swift in Sources */,
 				D29CB47C23EF6BA20067685A /* DataSource.swift in Sources */,
 				D29CB48223EF6C020067685A /* Extensions.swift in Sources */,
-				D29CB47A23EF6B960067685A /* Item.swift in Sources */,
+				D29CB47A23EF6B960067685A /* Cell.swift in Sources */,
 				D29CB48023EF6BC90067685A /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

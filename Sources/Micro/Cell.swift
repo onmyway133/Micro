@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  Cell.swift
 //  DeepDiff
 //
 //  Created by khoa on 08/02/2020.
@@ -11,13 +11,13 @@ public protocol ObserverOwner {
     var observer: Observer { get }
 }
 
-public struct Item<Cell: UICollectionViewCell>: ObserverOwner {
+public struct Cell<C: UICollectionViewCell>: ObserverOwner {
     public let observer = Observer()
 
-    public init(_ closure: @escaping (Context, Cell) -> Void) {
+    public init(_ closure: @escaping (Context, C) -> Void = { _, _ in }) {
         observer.onConfigure = { context, dataSource in
-            dataSource.registerIfNeeded(collectionView: context.collectionView, cellType: Cell.self)
-            if let cell: Cell = context.collectionView.dequeue(for: context.indexPath) {
+            dataSource.registerIfNeeded(collectionView: context.collectionView, cellType: C.self)
+            if let cell: C = context.collectionView.dequeue(for: context.indexPath) {
                 closure(context, cell)
                 return cell
             } else {
@@ -51,18 +51,18 @@ public struct Item<Cell: UICollectionViewCell>: ObserverOwner {
         return self
     }
 
-    func onWillDisplay(_ closure: @escaping (Context, Cell) -> Void) -> Self {
+    func onWillDisplay(_ closure: @escaping (Context, C) -> Void) -> Self {
         observer.onWillDisplay = { context, cell in
-            if let cell = cell as? Cell {
+            if let cell = cell as? C {
                 closure(context, cell)
             }
         }
         return self
     }
 
-    func onDidEndDisplay(_ closure: @escaping (Context, Cell) -> Void) -> Self {
+    func onDidEndDisplay(_ closure: @escaping (Context, C) -> Void) -> Self {
         observer.onDidEndDisplay = { context, cell in
-            if let cell = cell as? Cell {
+            if let cell = cell as? C {
                 closure(context, cell)
             }
         }
