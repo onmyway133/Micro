@@ -9,11 +9,20 @@ import UIKit
 
 open class DataSource: NSObject {
     private var cellRegister: Set<String> = Set()
-    public var state: State = .init()
+    public var finalState: State = .init()
     public weak var collectionView: UICollectionView?
 
     public init(collectionView: UICollectionView) {
         self.collectionView = collectionView
+    }
+
+    public var state: State {
+        get {
+            finalState
+        }
+        set {
+            reload(newState: newValue)
+        }
     }
 
     public func reload(
@@ -25,7 +34,7 @@ open class DataSource: NSObject {
         let request = Reloader.Request(
             dataSource: self,
             collectionView: collectionView,
-            oldState: state,
+            oldState: finalState,
             newState: newState,
             isAnimated: isAnimated,
             completion: completion ?? { _ in }

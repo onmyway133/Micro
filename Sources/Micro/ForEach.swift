@@ -28,7 +28,7 @@ public func forEach<Model: DiffAware, Cell: UICollectionViewCell>(
                 changes: changes,
                 section: 0,
                 updateData: {
-                    request.dataSource.state = request.newState
+                    request.dataSource.finalState = request.newState
                 },
                 completion: request.completion
             )
