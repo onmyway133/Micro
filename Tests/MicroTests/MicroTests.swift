@@ -41,7 +41,7 @@ final class MicroTests: XCTestCase {
             Movie(kind: .ad)
         ]
 
-        dataSource.state = forEach(models: movies) { movie in
+        dataSource.state = forEach(movies) { movie in
             switch movie.kind {
             case .show(let name):
                 return Cell<MovieCell>() { context, cell in

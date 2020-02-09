@@ -65,9 +65,9 @@ extension DataSource: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let observer = state.observers[indexPath.item]
+        let observer = state.observers[safe: indexPath.item]
         let context = Context(collectionView: collectionView, indexPath: indexPath)
-        return observer.onConfigure(context, self) ?? UICollectionViewCell()
+        return observer?.onConfigure(context, self) ?? UICollectionViewCell()
     }
 }
 
@@ -77,9 +77,9 @@ extension DataSource: UICollectionViewDelegate {
         willDisplay cell: UICollectionViewCell,
         forItemAt indexPath: IndexPath
     ) {
-        let observer = state.observers[indexPath.item]
+        let observer = state.observers[safe: indexPath.item]
         let context = Context(collectionView: collectionView, indexPath: indexPath)
-        observer.onWillDisplay(context, cell)
+        observer?.onWillDisplay(context, cell)
     }
 
     open func collectionView(
@@ -87,45 +87,45 @@ extension DataSource: UICollectionViewDelegate {
         didEndDisplaying cell: UICollectionViewCell,
         forItemAt indexPath: IndexPath
     ) {
-        let observer = state.observers[indexPath.item]
+        let observer = state.observers[safe: indexPath.item]
         let context = Context(collectionView: collectionView, indexPath: indexPath)
-        observer.onDidEndDisplay(context, cell)
+        observer?.onDidEndDisplay(context, cell)
     }
 
     public func collectionView(
         _ collectionView: UICollectionView,
         shouldSelectItemAt indexPath: IndexPath
     ) -> Bool {
-        let observer = state.observers[indexPath.item]
+        let observer = state.observers[safe: indexPath.item]
         let context = Context(collectionView: collectionView, indexPath: indexPath)
-        return observer.onShouldSelect(context)
+        return observer?.onShouldSelect(context) ?? false
     }
 
     open func collectionView(
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        let observer = state.observers[indexPath.item]
+        let observer = state.observers[safe: indexPath.item]
         let context = Context(collectionView: collectionView, indexPath: indexPath)
-        observer.onSelect(context)
+        observer?.onSelect(context)
     }
 
     open func collectionView(
         _ collectionView: UICollectionView,
         didDeselectItemAt indexPath: IndexPath
     ) {
-        let observer = state.observers[indexPath.item]
+        let observer = state.observers[safe: indexPath.item]
         let context = Context(collectionView: collectionView, indexPath: indexPath)
-        observer.onDeselect(context)
+        observer?.onDeselect(context)
     }
 
     open func collectionView(
         _ collectionView: UICollectionView,
         shouldHighlightItemAt indexPath: IndexPath
     ) -> Bool {
-        let observer = state.observers[indexPath.item]
+        let observer = state.observers[safe: indexPath.item]
         let context = Context(collectionView: collectionView, indexPath: indexPath)
-        return observer.onShouldHighlight(context)
+        return observer?.onShouldHighlight(context) ?? false
     }
 }
 
@@ -135,8 +135,8 @@ extension DataSource: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let observer = state.observers[indexPath.item]
+        let observer = state.observers[safe: indexPath.item]
         let context = Context(collectionView: collectionView, indexPath: indexPath)
-        return observer.onSize(context)
+        return observer?.onSize(context) ?? .zero
     }
 }

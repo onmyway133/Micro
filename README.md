@@ -7,7 +7,7 @@ Micro provides type safe SwiftUI style data source for UICollectionView, with su
 Just declare a `State` with SwiftUI style `forEach` and Micro will reload with animated diffing
 
 ```swift
-dataSource.state = forEach(models: blogs) { blog in
+dataSource.state = forEach(blogs) { blog in
     Cell<BlogCell>() { context, cell in
         cell.nameLabel.text = blog.name
     }
@@ -31,6 +31,20 @@ Features
 - By default, diffing is animated, you can use `dataSource.reload(newState:isAnimated:completion)` to specify animated and completion
 
 ## Advanced
+
+### Animate reloading
+
+By default, when you set `state` on `DataSource`, animated diffing is performed. If you want to set animated property and to listen to completion event, you can use `reload` method
+
+```swift
+dataSource.reload(
+    newState: newState,
+    isAnimated: false,
+    completion: { finished in
+        print("reloade is finished")
+    }
+)
+```
 
 ### Complex model with multiple cell types
 
@@ -73,7 +87,7 @@ let movies: [Movie] = [
     Movie(kind: .ad)
 ]
 
-dataSource.state = forEach(models: movies) { movie in
+dataSource.state = forEach(movies) { movie in
     switch movie.kind {
     case .show(let name):
         return Cell<MovieCell>() { context, cell in

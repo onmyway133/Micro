@@ -9,7 +9,7 @@ import UIKit
 import DeepDiff
 
 public func forEach<Model: DiffAware>(
-    models: [Model],
+    _ models: [Model],
     transform: (Model) -> ObserverOwner
 ) -> State {
     let onReload: Reloader.Reload = { request in

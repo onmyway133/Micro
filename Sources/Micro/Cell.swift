@@ -26,32 +26,32 @@ public struct Cell<C: UICollectionViewCell>: ObserverOwner {
         }
     }
 
-    func onShouldSelect(_ closure: @escaping (Context) -> Bool) -> Self {
+    public func onShouldSelect(_ closure: @escaping (Context) -> Bool) -> Self {
         observer.onShouldSelect = closure
         return self
     }
 
-    func onSelect(_ closure: @escaping (Context) -> Void) -> Self {
+    public func onSelect(_ closure: @escaping (Context) -> Void) -> Self {
         observer.onSelect = closure
         return self
     }
 
-    func onDeselect(_ closure: @escaping (Context) -> Void) -> Self {
+    public func onDeselect(_ closure: @escaping (Context) -> Void) -> Self {
         observer.onDeselect = closure
         return self
     }
 
-    func onSize(_ closure: @escaping (Context) -> CGSize) -> Self {
+    public func onSize(_ closure: @escaping (Context) -> CGSize) -> Self {
         observer.onSize = closure
         return self
     }
 
-    func onShouldHighlight(_ closure: @escaping (Context) -> Bool) -> Self {
+    public func onShouldHighlight(_ closure: @escaping (Context) -> Bool) -> Self {
         observer.onShouldHighlight = closure
         return self
     }
 
-    func onWillDisplay(_ closure: @escaping (Context, C) -> Void) -> Self {
+    public func onWillDisplay(_ closure: @escaping (Context, C) -> Void) -> Self {
         observer.onWillDisplay = { context, cell in
             if let cell = cell as? C {
                 closure(context, cell)
@@ -60,7 +60,7 @@ public struct Cell<C: UICollectionViewCell>: ObserverOwner {
         return self
     }
 
-    func onDidEndDisplay(_ closure: @escaping (Context, C) -> Void) -> Self {
+    public func onDidEndDisplay(_ closure: @escaping (Context, C) -> Void) -> Self {
         observer.onDidEndDisplay = { context, cell in
             if let cell = cell as? C {
                 closure(context, cell)
@@ -71,17 +71,17 @@ public struct Cell<C: UICollectionViewCell>: ObserverOwner {
 }
 
 public struct Context {
-    let collectionView: UICollectionView
-    let indexPath: IndexPath
+    public let collectionView: UICollectionView
+    public let indexPath: IndexPath
 }
 
 public class Observer {
-    var onConfigure: (Context, DataSource) -> UICollectionViewCell? = { _, _ in nil }
-    var onShouldSelect: (Context) -> Bool = { _ in true }
-    var onSelect: (Context) -> Void = { _ in }
-    var onDeselect: (Context) -> Void = { _ in }
-    var onSize: (Context) -> CGSize = { _ in .zero }
-    var onShouldHighlight: (Context) -> Bool = { _ in true }
-    var onWillDisplay: (Context, UICollectionViewCell) -> Void = { _, _ in }
-    var onDidEndDisplay: (Context, UICollectionViewCell) -> Void = { _, _ in }
+    public var onConfigure: (Context, DataSource) -> UICollectionViewCell? = { _, _ in nil }
+    public var onShouldSelect: (Context) -> Bool = { _ in true }
+    public var onSelect: (Context) -> Void = { _ in }
+    public var onDeselect: (Context) -> Void = { _ in }
+    public var onSize: (Context) -> CGSize = { _ in .zero }
+    public var onShouldHighlight: (Context) -> Bool = { _ in true }
+    public var onWillDisplay: (Context, UICollectionViewCell) -> Void = { _, _ in }
+    public var onDidEndDisplay: (Context, UICollectionViewCell) -> Void = { _, _ in }
 }
