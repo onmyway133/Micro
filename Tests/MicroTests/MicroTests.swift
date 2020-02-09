@@ -5,18 +5,28 @@ import DeepDiff
 
 final class MicroTests: XCTestCase {
     func testDrive() {
-        struct Person: DiffAware {
-            let diffId = UUID()
-            let name: String
+        struct Movie: DiffAware {
+            enum Kind: Equatable {
+                case show(String)
+                case loading
+                case ad
+            }
 
-            static func compareContent(_ a: Person, _ b: Person) -> Bool {
-                return a.name == b.name
+            let diffId = UUID()
+            let kind: Kind
+
+            static func compareContent(_ a: Movie, _ b: Movie) -> Bool {
+                return a.kind == b.kind
             }
         }
 
-        class PersonCell: UICollectionViewCell {
+        class MovieCell: UICollectionViewCell {
             let nameLabel: UILabel = .init()
         }
+
+        class LoadingCell: UICollectionViewCell {}
+
+        class AdCell: UICollectionViewCell {}
 
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -24,29 +34,38 @@ final class MicroTests: XCTestCase {
         collectionView.dataSource = dataSource
         collectionView.delegate = dataSource
 
-        let persons: [Person] = [
-            Person(name: "a"),
-            Person(name: "b")
+        let movies: [Movie] = [
+            Movie(kind: .show("Titanic")),
+            Movie(kind: .show("Batman")),
+            Movie(kind: .loading),
+            Movie(kind: .ad)
         ]
 
-        dataSource.state = forEach(models: persons) { person in
-            Item<PersonCell>() { context, cell in
-                cell.nameLabel.text = person.name
-            }
-            .onSelect { _ in
+        dataSource.state = forEach(models: movies) { movie in
+            switch movie.kind {
+            case .show(let name):
+                return Item<MovieCell>() { context, cell in
+                    cell.nameLabel.text = name
+                }
+                .onSelect { _ in
 
-            }
-            .onDeselect { _ in
+                }
+                .onDeselect { _ in
 
-            }
-            .onWillDisplay { _, _ in
+                }
+                .onWillDisplay { _, _ in
 
-            }
-            .onDidEndDisplay { _, _ in
+                }
+                .onDidEndDisplay { _, _ in
 
-            }
-            .onSize { context in
-                CGSize(width: context.collectionView.frame.size.width, height: 40)
+                }
+                .onSize { context in
+                    CGSize(width: context.collectionView.frame.size.width, height: 40)
+                }
+            case .loading:
+                return Item<LoadingCell>() { _, _ in }
+            case .ad:
+                return Item<AdCell>() { _, _ in }
             }
         }
     }
