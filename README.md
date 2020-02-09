@@ -4,7 +4,7 @@
 <img src="Screenshots/demo.gif" height=400>
 </div>
 
-For demo, check [DemoMicro](https://github.com/onmyway133/Micro/Example/DemoMicro)
+For demo, check [DemoMicro](https://github.com/onmyway133/Micro/tree/master/Example/DemoMicro)
 
 
 ## Description
