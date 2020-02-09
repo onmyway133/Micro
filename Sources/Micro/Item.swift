@@ -22,6 +22,11 @@ public struct Item<Cell: UICollectionViewCell> {
         }
     }
 
+    func onShouldSelect(_ closure: @escaping (Context) -> Bool) -> Self {
+        observer.onShouldSelect = closure
+        return self
+    }
+
     func onSelect(_ closure: @escaping (Context) -> Void) -> Self {
         observer.onSelect = closure
         return self
@@ -68,6 +73,7 @@ public struct Context {
 
 public class Observer {
     var onConfigure: (Context, DataSource) -> UICollectionViewCell? = { _, _ in nil }
+    var onShouldSelect: (Context) -> Bool = { _ in true }
     var onSelect: (Context) -> Void = { _ in }
     var onDeselect: (Context) -> Void = { _ in }
     var onSize: (Context) -> CGSize = { _ in .zero }

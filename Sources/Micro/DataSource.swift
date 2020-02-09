@@ -84,6 +84,15 @@ extension DataSource: UICollectionViewDelegate {
         observer.onDidEndDisplay(context, cell)
     }
 
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        shouldSelectItemAt indexPath: IndexPath
+    ) -> Bool {
+        let observer = state.observers[indexPath.item]
+        let context = Context(collectionView: collectionView, indexPath: indexPath)
+        return observer.onShouldSelect(context)
+    }
+
     open func collectionView(
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
