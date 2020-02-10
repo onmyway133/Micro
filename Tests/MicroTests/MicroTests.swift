@@ -109,6 +109,15 @@ final class MicroTests: XCTestCase {
         }
     }
 
+    func testSubclass() {
+        class CustomDataSource: DataSource {
+            override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+                let blog = state.models[indexPath.item] as? Blog
+                print(blog)
+            }
+        }
+    }
+
     static var allTests = [
         ("testDrive", testDrive),
     ]

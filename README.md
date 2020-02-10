@@ -150,6 +150,19 @@ dataSource.state = forEach(movies) { movie in
 }
 ```
 
+### Customize with subclass
+
+`DataSource` is completely overridable, if you want to customize any methods, just subclass `DataSource`, override methods and access its `state.models` 
+
+```swift
+class CustomDataSource: DataSource {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let blog = state.models[indexPath.item] as? Blog
+        print(blog)
+    }
+}
+```
+
 ## Installation
 
 **Micro** is also available through [Swift Package Manager](https://swift.org/package-manager/)
