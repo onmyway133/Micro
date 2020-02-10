@@ -18,6 +18,28 @@ Micro provides type safe SwiftUI style data source for UICollectionView, with su
 Just declare a `State` with SwiftUI style `forEach` and Micro will reload with animated diffing
 
 ```swift
+let dataSource = DataSource(collectionView: collectionView)
+dataSource.state = State {
+    ForEach(blogs) { blog in
+        Cell<BlogCell>() { context, cell in
+            cell.nameLabel.text = blog.name
+        }
+        .onSelect { context in 
+            print("cell at index \(context.indexPath.item) is selected")
+        }
+        .onSize { context in 
+            CGSize(
+                width: context.collectionView.frame.size.width, 
+                height: 40
+            )
+        }
+    }
+}
+```
+
+The above uses Swift 5.1 function builder syntax, which uses `forEach` method under the hood. You can also do like below with `forEach` method. 
+
+```swift
 dataSource.state = forEach(blogs) { blog in
     Cell<BlogCell>() { context, cell in
         cell.nameLabel.text = blog.name
@@ -36,7 +58,7 @@ dataSource.state = forEach(blogs) { blog in
 
 Features
 
-- Supports iOS 10+
+- Supports iOS 8+
 - Declare in type safe manner with `forEach`
 - `context` provides additional information, like `UICollectionView` and `IndexPath`
 - Automatic reload with smart diffing whenever `state` is set
@@ -133,7 +155,7 @@ dataSource.state = forEach(movies) { movie in
 **Micro** is also available through [Swift Package Manager](https://swift.org/package-manager/)
 
 ```swift
-.package(url: "https://github.com/onmyway133/Micro", from: "1.1.0")
+.package(url: "https://github.com/onmyway133/Micro", from: "1.2.0")
 ```
 
 ## Author

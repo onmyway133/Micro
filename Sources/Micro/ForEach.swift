@@ -8,6 +8,17 @@
 import UIKit
 import DeepDiff
 
+public struct ForEach {
+    public let state: State
+
+    public init<Model: DiffAware>(
+        _ models: [Model],
+        transform: (Model) -> ObserverOwner
+    ) {
+        self.state = forEach(models, transform: transform)
+    }
+}
+
 public func forEach<Model: DiffAware>(
     _ models: [Model],
     transform: (Model) -> ObserverOwner
