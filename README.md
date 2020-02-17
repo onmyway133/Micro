@@ -18,6 +18,9 @@ Micro provides type safe SwiftUI style data source for UICollectionView, with su
 Just declare a `State` with SwiftUI style `forEach` and Micro will reload with animated diffing
 
 ```swift
+struct Blog: DiffAware {}
+class BlogCell: UICollectionViewCell {}
+
 let dataSource = DataSource(collectionView: collectionView)
 dataSource.state = State {
     ForEach(blogs) { blog in
